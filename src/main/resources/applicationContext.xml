@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	                       http://www.springframework.org/schema/beans/spring-beans.xsd
+		                   http://www.springframework.org/schema/context 
+		                   http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-
+	<context:component-scan base-package="com.company.business"></context:component-scan>
+	<!-- 원래는 이렇게 하나하나 해줘야 하지만 위에 1줄로 코딩 가능하다. 
+	<bean id="boardDO" class="com.company.business.board.BoardDO"></bean>
+	<bean id="boardDAO" class="com.company.business.Impl.BoardDAO"></bean>
+	<bean id="BoardServiceImpl" class="com.company.business.Impl.BoardServiceImpl"></bean>
+	 -->
 </beans>
