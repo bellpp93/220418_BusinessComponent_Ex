@@ -20,11 +20,11 @@ import com.company.business.board.BoardService;
 public class BoardServiceImpl implements BoardService {  // 구현 클래스
 	// [중요]
 	@Autowired
-	private BoardDAO boardDAO;
+	private BoardDAO boardDAO;  // 스프링 컨테이너가 이미 만들어진 객체를 의존성 주입(DI)
 	
 	@Override
 	public void insertBoard(BoardDO boardDO) {
-		
+		//boardDAO.
 	}
 
 	@Override
@@ -37,9 +37,8 @@ public class BoardServiceImpl implements BoardService {  // 구현 클래스
 		
 	}
 
-	@Override
+	@Override  // 재정의
 	public List<BoardDO> getBoardList(BoardDO boardDO) {
-		
 		return boardDAO.getBoardList();
 	}
 
