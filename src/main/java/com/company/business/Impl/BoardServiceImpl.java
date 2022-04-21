@@ -24,7 +24,7 @@ public class BoardServiceImpl implements BoardService {  // 구현 클래스
 	
 	@Override
 	public void insertBoard(BoardDO boardDO) {
-		//boardDAO.
+		boardDAO.insertBoard(boardDO);
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class BoardServiceImpl implements BoardService {  // 구현 클래스
 	}
 
 	@Override  // 재정의
-	public List<BoardDO> getBoardList(BoardDO boardDO) {
+	public List<BoardDO> getBoardList() {
 		return boardDAO.getBoardList();
 	}
 

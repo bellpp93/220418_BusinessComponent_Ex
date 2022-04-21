@@ -15,7 +15,7 @@ public interface BoardService {
 	void deleteBoard(BoardDO boardDO);
 	
 	// 전체 게시글 목록 보기 기능
-	List<BoardDO> getBoardList(BoardDO boardDO);
+	List<BoardDO> getBoardList();
 	
 	// 특정 게시글 상세보기
 	BoardDO getBoard(BoardDO boardDO);

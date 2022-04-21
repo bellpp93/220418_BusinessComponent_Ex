@@ -48,5 +48,25 @@ public class BoardDAO {
 			JDBCUtil.close(rs, pstmt, conn);
 		}
 		return boardList;
+	}  // end getBoardList() 메소드 =============================================
+	
+	// 게시글 등록 처리 메소드
+	public void insertBoard(BoardDO boardDO) {
+		System.out.println("===> JDBC로 insertBoard() 처리됨");
+		
+		try {
+			conn = JDBCUtil.getConnection();
+			String INSERT_BOARD = "insert into board(seq,title,writer,content) values((select nvl(max(seq),0)+1 from board),?,?,?)";
+			pstmt = conn.prepareStatement(INSERT_BOARD);
+			pstmt.setString(1, boardDO.getTitle());
+			pstmt.setString(2, boardDO.getWriter());
+			pstmt.setString(3, boardDO.getContent());
+			
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(pstmt, conn);
+		}
 	}
 }
