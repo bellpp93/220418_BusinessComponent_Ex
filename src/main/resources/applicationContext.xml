@@ -3,15 +3,28 @@
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xmlns:p="http://www.springframework.org/schema/p"
 	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	                       http://www.springframework.org/schema/beans/spring-beans.xsd
 		                   http://www.springframework.org/schema/context 
-		                   http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+		                   http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		                   http://www.springframework.org/schema/aop 
+		                   http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 
+	<!-- DI(의존성 주입)를 적용하기 위해서 필요 설정 -->
 	<context:component-scan base-package="com.company.business"></context:component-scan>
-	<!-- 원래는 이렇게 하나하나 해줘야 하지만 위에 1줄로 코딩 가능하다. 
-	<bean id="boardDO" class="com.company.business.board.BoardDO"></bean>
-	<bean id="boardDAO" class="com.company.business.Impl.BoardDAO"></bean>
-	<bean id="BoardServiceImpl" class="com.company.business.Impl.BoardServiceImpl"></bean>
-	 -->
+		<!-- 원래는 밑에처럼 하나하나 코딩 해줘야 하지만 위에 1줄로 코딩 가능하다. 
+		<bean id="boardDO" class="com.company.business.board.BoardDO"></bean>
+		<bean id="boardDAO" class="com.company.business.Impl.BoardDAO"></bean>
+		<bean id="BoardServiceImpl" class="com.company.business.Impl.BoardServiceImpl"></bean>
+		 -->
+	
+	<!-- AOP(관점 지향 프로그래밍)를 적용하기 위해서 필요 설정 -->
+	<bean id="log" class="com.company.business.common.LogAdvice"></bean>
+	<aop:config>
+		<aop:pointcut id="allPointcut" expression="execution(* com.company.business..*Impl.*(..))"/>
+		<aop:aspect ref="log">
+			<aop:before pointcut-ref="allPointcut" method="printLog"/>
+		</aop:aspect>
+	</aop:config>
 </beans>

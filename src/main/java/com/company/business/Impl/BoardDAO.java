@@ -48,7 +48,7 @@ public class BoardDAO {
 			JDBCUtil.close(rs, pstmt, conn);
 		}
 		return boardList;
-	}  // end getBoardList() 메소드 =============================================
+	}  // End getBoardList() 메소드 =============================================
 	
 	// 게시글 등록 처리 메소드
 	public void insertBoard(BoardDO boardDO) {
@@ -68,5 +68,9 @@ public class BoardDAO {
 		} finally {
 			JDBCUtil.close(pstmt, conn);
 		}
+	}  // End insertBoard() 메소드 =============================================
+	
+	public BoardDO getBoard(BoardDO boardDO) {
+		return null;
 	}
 }

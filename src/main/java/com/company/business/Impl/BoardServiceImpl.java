@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.company.business.board.BoardDO;
 import com.company.business.board.BoardService;
+import com.company.business.common.LogAdvice;
 
 /*
  * 다형성(polymorphism)이란 하나의 객체가 여러 가지 타입을 가질 수 있는 것을 의미합니다.
@@ -21,31 +22,42 @@ public class BoardServiceImpl implements BoardService {  // 구현 클래스
 	// [중요]
 	@Autowired
 	private BoardDAO boardDAO;  // 스프링 컨테이너가 이미 만들어진 객체를 의존성 주입(DI)
+	// 새로 추가
+	private LogAdvice log;		// 스프링 컨테이너가 이미 만들어진 객체를 의존성 주입(DI)
+	
+	// 생성자
+	public BoardServiceImpl() {
+		log = new LogAdvice();
+	}
 	
 	@Override
 	public void insertBoard(BoardDO boardDO) {
+		// 추가
+		// log.printLog();
 		boardDAO.insertBoard(boardDO);
 	}
 
 	@Override
 	public void updateBoard(BoardDO boardDO) {
-		
+		// log.printLog();
+		//boardDAO.updateBoard(boardDO);
 	}
 
 	@Override
 	public void deleteBoard(BoardDO boardDO) {
-		
+		// log.printLog();
+		//boardDAO.deleteBoard(boardDO);		
 	}
 
 	@Override  // 재정의
 	public List<BoardDO> getBoardList() {
+		// log.printLog();
 		return boardDAO.getBoardList();
 	}
 
 	@Override
-	public BoardDO getBoard(BoardDO boardDO) {
-
-		return null;
+	public BoardDO getBoard(BoardDO boardDO) {		
+		// log.printLog();
+		return boardDAO.getBoard(boardDO);
 	}
-	
 }
